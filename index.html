@@ -1,19 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- Added link to the jQuery Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="utf-8" />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="assets/style.css" />
-    <title>The Psychic Game</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <title>Psychic Game</title>
   </head>
-
   <body>
     <div class="jumbotron">
       <h1 class="text-center">The Psychic Game</h1>
@@ -22,90 +17,15 @@
         right
       </p>
     </div>
-
     <div class="container">
-      <p id="userChoice-text"></p>
-      <p id="wins-text"></p>
-      <p id="losses-text"></p>
-      <p id="guesses-text"></p>
-      <p id="user-guesses-text"></p>
+      <h1>Are you ready?</h1>
+      <p></p>
+      <p class="wins">Wins:</p>
+      <p class="losses">Losses:</p>
+      <p class="guessesLeft">Guesses Left:</p>
+      <p class="guesses">Your Guesses so far:</p>
     </div>
-    <script type="text/javascript">
 
-              var computerChoice = [ "a",
-                "b",
-                "c",
-                "d",
-                "e",
-                "f",
-                "g",
-                "h",
-                "i",
-                "j",
-                "k",
-                "l",
-                "m",
-                "n",
-                "o",
-                "p",
-                "q",
-                "r",
-                "s",
-                "t",
-                "u",
-                "v",
-                "w",
-                "x",
-                "y",
-                "z"
-              ];
-
-                // Creating variables to hold the number of wins, losses, and guesses. Set everything to 0
-              var wins = 0;
-              var losses = 0;
-              var guesses = 9;
-              var userGuessLetter = [];
-
-              document.onkeyup = function(event) {
-                  var userGuessLetter = event.key;
-
-                  var computerGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
-
-                  if (userGuessLetter === computerGuess) {
-                    wins++;
-                    guesses = 9;
-                    userGuessLetter = [];
-                  }
-                  else if (userGuessLetter != computerGuess) {
-                    losses++;
-                    guesses--;
-                    userGuessLetter.push(userGuessLetter);
-                  }
-                  else if (guesses === 0) {
-                    guesses = 9;
-                    losses++;
-                    userGuessLetter = [];
-                  }
-
-                  var content = "<p>#wins-text: " + wins + </p> + "<p>#losses-text: " + losses + </p> + "<p>#guesses-text: " + guesses + </p> + "<p>#user-guesses-text.join(", ") + </p>;
-                  document.querySelector(".container").innerHTML = content;
-              };
-
-      <script
-        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"
-      >
-    </script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
+    <script src="assets/javascript/game.js"></script>
   </body>
 </html>
