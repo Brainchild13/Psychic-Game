@@ -4,94 +4,99 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Added link to the jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="assets/style.css" />
     <title>The Psychic Game</title>
   </head>
+
   <body>
-    <div>
-      <p id="directions-text">Guess what letter I'm thinking of?</p>
+    <div class="jumbotron">
+      <h1 class="text-center">The Psychic Game</h1>
+      <p class="text-center" id="directions-text">
+        Guess what letter I'm thinking of? You have 9 guesses to try to get it
+        right
+      </p>
+    </div>
+
+    <div class="container">
       <p id="userChoice-text"></p>
-      <p id="computerChoice-text"></p>
       <p id="wins-text"></p>
       <p id="losses-text"></p>
       <p id="guesses-text"></p>
+      <p id="user-guesses-text"></p>
     </div>
-
     <script type="text/javascript">
-      // Creates an array that lists out all of the options (a-z).
-      var computerChoice = [
-        "a",
-        "b",
-        "c",
-        "d",
-        "e",
-        "f",
-        "g",
-        "h",
-        "i",
-        "j",
-        "k",
-        "l",
-        "m",
-        "n",
-        "o",
-        "p",
-        "q",
-        "r",
-        "s",
-        "t",
-        "u",
-        "v",
-        "w",
-        "x",
-        "y",
-        "z"
-      ];
 
-      // Creating variables to hold the number of wins, losses, and guesses. They start at 0
-      var wins = 0;
-      var losses = 0;
-      var guesses = 0;
+              var computerChoice = [ "a",
+                "b",
+                "c",
+                "d",
+                "e",
+                "f",
+                "g",
+                "h",
+                "i",
+                "j",
+                "k",
+                "l",
+                "m",
+                "n",
+                "o",
+                "p",
+                "q",
+                "r",
+                "s",
+                "t",
+                "u",
+                "v",
+                "w",
+                "x",
+                "y",
+                "z"
+              ];
 
-      // Create variables that hold references to the places in the HTML where we want to display things.
-      var directionsText = document.getElementById("directions-test");
-      var userchoiceText = document.getElementById("userChoice-text");
-      var computerchoiceText = document.getElementById("computerChoice-text");
-      var winsText = document.getElementById("wins-text");
-      var lossesText = document.getElementById("losses-text");
-      var guesses = document.getElementById("guesses-text");
+                // Creating variables to hold the number of wins, losses, and guesses. Set everything to 0
+              var wins = 0;
+              var losses = 0;
+              var guesses = 9;
+              var userGuessLetter = [];
 
-      //this function is run whenever the user presses a key
-      document.onkeyup = function(event) {
-        //determines which key is pressed
-        var userGuess = event.key;
+              document.onkeyup = function(event) {
+                  var userGuessLetter = event.key;
 
-        //randomly chooses a choice from the options array. this is the computer's guess
-        var computerGuess =
-          computerChoice[Math.floor(Math.random() * computerChoice.length)];
+                  var computerGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
 
-        //this logic determines the outcome of the game (win/loss), and increments the approriate number
-        for (i = 0; i < 9; i++) {
-          if ((userGuess = computerGuess)) {
-            wins++;
-            guesses++;
-          } else if (userGuess != computerGuess) {
-            losses++;
-            guesses++;
-          }
-        }
-      };
+                  if (userGuessLetter === computerGuess) {
+                    wins++;
+                    guesses = 9;
+                    userGuessLetter = [];
+                  }
+                  else if (userGuessLetter != computerGuess) {
+                    losses++;
+                    guesses--;
+                    userGuessLetter.push(userGuessLetter);
+                  }
+                  else if (guesses === 0) {
+                    guesses = 9;
+                    losses++;
+                    userGuessLetter = [];
+                  }
+
+                  var content = "<p>#wins-text: " + wins + </p> + "<p>#losses-text: " + losses + </p> + "<p>#guesses-text: " + guesses + </p> + "<p>#user-guesses-text.join(", ") + </p>;
+                  document.querySelector(".container").innerHTML = content;
+              };
+
+      <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+      >
     </script>
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"

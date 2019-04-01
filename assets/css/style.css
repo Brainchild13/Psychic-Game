@@ -1,0 +1,22 @@
+body {
+  text-align: center;
+  background-color: whitesmoke;
+  background-image: url(../images/psychic-background.jpg);
+  background-repeat: no-repeat, repeat;
+  background-position: center;
+  background-size: cover;
+}
+.container {
+  background-color: white;
+}
+h1 {
+  color: blue;
+}
+
+.wins,
+.losses,
+.guessesLeft,
+.guesses {
+  background-color: white;
+  color: black;
+}
